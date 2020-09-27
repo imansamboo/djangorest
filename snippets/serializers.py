@@ -6,10 +6,15 @@ from django.contrib.auth.models import User
 class SnippetSerializer(serializers.HyperlinkedModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     highlight = serializers.HyperlinkedIdentityField(view_name='snippet-highlight', format='html')
+    color = serializers.SerializerMethodField()
+
+
     class Meta:
         model = Snippet
         fields = ['url', 'id', 'highlight', 'owner',
-                  'title', 'code', 'linenos', 'language', 'style']
+                  'title', 'code', 'linenos', 'language', 'style', 'color']
+    def get_color(self, obj):
+        return 'green'
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
