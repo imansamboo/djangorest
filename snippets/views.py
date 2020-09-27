@@ -10,6 +10,7 @@ from rest_framework.reverse import reverse
 from rest_framework import renderers
 from rest_framework.response import Response
 
+
 class SnippetHighlight(generics.GenericAPIView):
     queryset = Snippet.objects.all()
     renderer_classes = [renderers.StaticHTMLRenderer]
